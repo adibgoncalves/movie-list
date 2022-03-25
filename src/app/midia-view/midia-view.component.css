@@ -1,0 +1,15 @@
+.midia-options .btn-warning {
+    margin-right: 20px;
+}
+
+.poster {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.poster img {
+    height: 494px;
+    width: auto;
+    border-radius: 5px;
+}

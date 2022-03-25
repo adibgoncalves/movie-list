@@ -1,50 +1,25 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top position-sticky">
   <div class="container">
-    <a class="navbar-brand" href="#">Movie List</a>
+    <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active" >Movie List</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active" >Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Novo</a>
+          <a class="nav-link" [routerLink]="['/midia-new']" routerLinkActive="router-link-active">Novo</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-
-<div class="container mt-4">
-  <h2>Filmes e séries</h2>
-  <table class="table mt-3">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Título</th>
-        <th scope="col">Tipo</th>
-        <th scope="col">Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Velozes e Furiosos</td>
-        <td>Filme</td>
-        <td>
-          <a>
-            <fa-icon [icon]="faEye"></fa-icon>
-          </a>
-          <a>
-            <fa-icon [icon]="faPenToSquare"></fa-icon>
-          </a>
-          <a>
-            <fa-icon [icon]="faTrash"></fa-icon>
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<router-outlet></router-outlet>
+<footer class="bg-light text-center text-lg-start fixed-bottom">
+  <div class="text-center bg-dark p-3 text-light">
+    Curso de TSI | IFRN - Parnamirim
+    <p class="m-0">Desenvolvido por <b>Adib, Amanda e Milton</b></p>
+  </div>
+</footer>

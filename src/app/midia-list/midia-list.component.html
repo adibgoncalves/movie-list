@@ -1,1 +1,37 @@
-<p>midia-list works!</p>
+<div class="container mt-4">
+<h2>Filmes e séries</h2>
+    <table class="table mt-3">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Título</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let midia of midias">
+            <th scope="row">{{midia.id}}</th>
+            <td>{{midia.nome}}</td>
+            <td>Filme</td>
+            <td class="d-flex flex-row">
+                <div class="option">
+                    <a class="btn btn-primary" [routerLink]="['/midia-view', midia.id]" routerLinkActive="router-link-active">
+                        <fa-icon [icon]="faEye"></fa-icon>
+                    </a>
+                </div>
+                <div class="option">
+                    <a class="btn btn-warning" [routerLink]="['/midia-edit', midia.id]" routerLinkActive="router-link-active">
+                        <fa-icon [icon]="faPenToSquare"></fa-icon>
+                    </a>
+                </div>
+                <div class="option">
+                    <a class="btn btn-danger" [routerLink]="['/midia-delete', midia.id]" routerLinkActive="router-link-active">
+                        <fa-icon [icon]="faTrash"></fa-icon>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

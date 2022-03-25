@@ -1,0 +1,48 @@
+<div class="container mt-4 mb-5">
+    <div class="mb-3 d-flex justify-content-between align-items-center">
+        <h2>{{midia.nome}}</h2>
+        <div class="midia-options">
+            <button type="submit" class="btn btn-warning">Editar</button>
+            <button type="submit" class="btn btn-danger">Excluir</button>
+        </div>
+    </div>
+    <form class="row">
+        <div class="col-12 col-md-6">
+            <div class="form-group mb-4">
+                <label class="mb-1">Nome</label>
+                <input type="text" class="form-control" value={{midia.nome}} disabled>
+            </div>
+            <div class="form-group mb-4">
+                <label class="mb-1">Ano</label>
+                <input type="text" class="form-control" value={{midia.ano}} disabled>
+            </div>
+            <div class="form-group mb-4">
+                <label class="mb-1">Anotações</label>
+                <textarea name="" type="text" class="form-control" value={{midia.anotacao}} cols="30" rows="10" disabled></textarea>
+            </div>
+            <div class="form-group mb-4">
+                <label class="mb-1">Tipo</label>
+                <input type="text" class="form-control" value={{midia.tipo}} disabled>
+            </div>
+            <div class="form-group mb-4">
+                <label class="mb-1">Gênero</label>
+                <input type="text" class="form-control" value={{midia.genero}} disabled>
+            </div>
+            <div class="form-group mb-4">
+                <label class="mb-1">Duração</label>
+                <input type="text" class="form-control" value={{midia.duracao}} disabled>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 mb-4">
+            <div class="p-3 mt-4 mb-4 text-center poster">
+                <img class="img-fluid" src="{{midia.poster}}" alt="">
+            </div>
+
+            <div class="form-group mb-4">
+                <label class="mb-1">Assistido</label>
+                <input type="text" class="form-control" value={{assistido}} disabled>
+            </div>
+        </div>
+        
+    </form>
+</div>

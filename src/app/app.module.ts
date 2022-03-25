@@ -7,14 +7,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
 import { MidiaListComponent } from './midia-list/midia-list.component';
+import { MidiaFormComponent } from './midia-form/midia-form.component';
+import { MidiaViewComponent } from './midia-view/midia-view.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MidiaListComponent
+    MidiaListComponent,
+    MidiaFormComponent,
+    MidiaViewComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
