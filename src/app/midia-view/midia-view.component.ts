@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Midia } from '../midia';
 import { MidiaService } from '../midia.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-midia-view',
@@ -11,7 +12,8 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./midia-view.component.css']
 })
 export class MidiaViewComponent implements OnInit {
-
+  faAngleLeft = faAngleLeft;
+  
   midia: Midia = {
     id: 0,
     nome: "",

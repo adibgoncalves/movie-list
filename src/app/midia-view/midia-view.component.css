@@ -13,3 +13,8 @@
     width: auto;
     border-radius: 5px;
 }
+
+.ng-fa-icon {
+    margin-right: 15px;
+    font-size: 25px;
+}

@@ -9,15 +9,23 @@ import { Midia } from './midia';
 })
 
 export class MidiaService {
-    url:string = "http://localhost:3000"
+    url:string = "http://localhost:8080"
 
     constructor(private http: HttpClient) { }
 
     getMidias(): Observable<Midia[]> {
-        return this.http.get<Midia[]>(`${this.url}/midialist`);
+        return this.http.get<Midia[]>(`${this.url}/midia`);
     }
 
     getMidiaById(id: number): Observable<Midia> {
-        return this.http.get<Midia>(`${this.url}/midialist/${id}`);
+        return this.http.get<Midia>(`${this.url}/midia/${id}`);
+    }
+
+    createMidia(midia: Midia): Observable<Midia> {
+        return this.http.post<Midia>(`${this.url}/midia`, midia);
+    }
+
+    deleteMidiaById(id: number): Observable<Midia> {
+        return this.http.delete<Midia>(`${this.url}/midia/${id}`)
     }
 }
