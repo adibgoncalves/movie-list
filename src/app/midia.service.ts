@@ -25,6 +25,11 @@ export class MidiaService {
         return this.http.post<Midia>(`${this.url}/midia`, midia);
     }
 
+    
+    updateMidia(midia: Midia): Observable<Midia> {
+        return this.http.put<Midia>(`${this.url}/midia/${midia.id}`, midia);
+    }
+
     deleteMidiaById(id: number): Observable<Midia> {
         return this.http.delete<Midia>(`${this.url}/midia/${id}`)
     }

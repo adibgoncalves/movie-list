@@ -1,7 +1,8 @@
-import { Midia, MidiaClass } from './../midia';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Midia } from './../midia';
 import { Component, Input, OnInit } from '@angular/core';
 import { MidiaService } from '../midia.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-midia-form',
@@ -10,33 +11,56 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class MidiaFormComponent implements OnInit {
 
-  formMidia: any;
+  id?: number;
+  isNew: boolean = true;
 
-  constructor(private servico: MidiaService) { }
+  formMidia: FormGroup = this.formBuilder.group({
+    id: [0],
+    nome: ['', Validators.required],
+    ano: [],
+    tipo: ['', Validators.required],
+    genero: ['', Validators.required],
+    duracao: [],
+    anotacao: [],
+    poster: [],
+    assistido: ['']
+  });
+
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private servico: MidiaService, private router: Router) { }
 
   ngOnInit(): void {
-    this.createForm(new MidiaClass());
+    this.id = this.route.snapshot.paramMap.get('id') ? parseInt(this.route.snapshot.paramMap.get('id')!) : 0;
+    if(this.id > 0) {
+      this.isNew = false;
+      this.servico.getMidiaById(this.id).subscribe({
+        next: (midia: Midia) => {
+          this.formMidia.setValue(midia);
+        },
+        error: (erro: any) => console.log(erro),
+        complete: () => console.log('Dados da midia existente carregados')
+      })
+    }else {
+      this.isNew = true;
+    }
   }
 
-  createForm(midia: Midia) {
-    this.formMidia = new FormGroup({
-      nome: new FormControl(midia.nome),
-      anotacao: new FormControl(midia.anotacao),
-      ano: new FormControl(midia.ano),
-      tipo: new FormControl(midia.tipo),
-      genero: new FormControl(midia.genero),
-      duracao: new FormControl(midia.duracao),
-      poster: new FormControl(midia.poster),
-      assistido: new FormControl(midia.assistido)
-    })
+  saveMidia(): void {
+    if(this.isNew) {
+      this.servico.createMidia(this.formMidia.value).subscribe({
+        next: (midia: Midia) => {
+          this.router.navigate(['/midia-list'])
+        },
+        error: (erro: any) => console.log(erro),
+        complete: () => console.log('A mídia foi salva.')
+      })
+    }else {
+      this.servico.updateMidia(this.formMidia.value).subscribe({
+        next: (midia: Midia) => {
+          this.router.navigate(['/midia-list']);
+        },
+        error: (erro: any) => console.log(erro),
+        complete: () => console.log('A mídia foi atualizada.')
+      })
+    }
   }
-
-  saveMidia(midia: Midia) {
-    this.servico.createMidia(this.formMidia).subscribe({
-      next: (midia: Midia) => console.log(midia),
-      error: (erro) => console.log(erro),
-      complete: () => console.log('Mídia deletada')
-    })
-  }
-
 }

@@ -1,38 +1,52 @@
 <div class="container mt-4 mb-5">
-    <h2>Nova mídia</h2>
-    <form class="row">
+    <h2 *ngIf="isNew">Nova mídia</h2>
+    <h2 *ngIf="!isNew">Editar mídia</h2>
+    <form class="row" [formGroup]="formMidia">
+        <div class="form-group col-12 mt-3" *ngIf="!isNew">
+            <label for="id" class="mb-1">Id</label>
+            <input type="text" class="form-control" id="id" name="id" formControlName="id">
+        </div>
         <div class="form-group col-12 col-md-8 mb-4 mt-3">
-            <label for="name" class="mb-1">Nome</label>
-            <input type="text" class="form-control" id="name" name="midianame" placeholder="Nome da mídia">
+            <label for="nome" class="mb-1">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome" formControlName="nome" placeholder="Nome da mídia" required>
         </div>
         <div class="form-group col-12 col-md-4 mb-4 mt-3">
-            <label for="year" class="mb-1">Ano</label>
-            <input type="text" class="form-control" id="year" name="year" placeholder="Ano da mídia">
+            <label for="ano" class="mb-1">Ano</label>
+            <input type="text" class="form-control" id="ano" name="ano" formControlName="ano" placeholder="Ano da mídia" required>
         </div>
         <div class="form-group col-12 col-md-4 mb-4">
-            <label for="type" class="mb-1">Tipo</label>
-            <input type="text" class="form-control" id="type" name="type" placeholder="Tipo da mídia">
+            <label for="tipo" class="mb-1">Tipo</label>
+            <input type="text" class="form-control" id="tipo" name="tipo" formControlName="tipo" placeholder="Tipo da mídia" required>
         </div>
         <div class="form-group col-12 col-md-4 mb-4">
-            <label for="gender" class="mb-1">Gênero</label>
-            <input type="text" class="form-control" id="gender" name="gender" placeholder="Gênero da mídia">
+            <label for="genero" class="mb-1">Gênero</label>
+            <input tipo="text" class="form-control" id="genero" name="genero" formControlName="genero" placeholder="Gênero da mídia" required>
         </div>
         <div class="form-group col-12 col-md-4 mb-4">
-            <label for="duration" class="mb-1">Duração</label>
-            <input type="text" class="form-control" id="duration" name="duration" placeholder="Duração da mídia">
+            <label for="duracao" class="mb-1">Duração</label>
+            <input type="text" class="form-control" id="duracao" name="duracao" formControlName="duracao" placeholder="Duração da mídia">
         </div>
         <div class="form-group col-12 col-md-6 mb-4">
-            <label for="notes" class="mb-1">Anotações</label>
-            <textarea name="" type="text" class="form-control" id="notes" name="notes" placeholder="Suas anotações sobre a mídia" cols="30" rows="10"></textarea>
+            <label for="anotacao" class="mb-1">Anotações</label>
+            <textarea name="" type="text" class="form-control" id="anotacao" name="anotacao" formControlName="anotacao" placeholder="Suas anotações sobre a mídia" cols="30" rows="10"></textarea>
         </div>
         <div class="form-group col-12 col-md-6 mb-1">
             <label for="poster" class="mb-1">Poster</label>
-            <input type="text" class="form-control" id="poster" name="poster" placeholder="URL do poster">
+            <input type="text" class="form-control" id="poster" name="poster" formControlName="poster" placeholder="URL do poster">
             <img src="" alt="">
+
+            <div class="form-group mb-4" *ngIf="!isNew">
+                <label class="mb-1">Assistido</label>
+                <input type="text" class="form-control" id="assistido" name="assistido" formControlName="assistido">
+            </div>
         </div>
-        <div>
-            <button type="submit" class="btn btn-success">Salvar</button>
-            <button type="delete" class="btn btn-danger">Cancelar</button>
+        <div *ngIf="isNew">
+            <button type="submit" class="btn btn-success" [disabled]="!formMidia.valid" (click)="saveMidia()">Salvar</button>
+            <a class="btn btn-danger" [routerLink]="['/home']">Cancelar</a>
+        </div>
+        <div *ngIf="!isNew">
+            <button type="submit" class="btn btn-success" [disabled]="!formMidia.valid" (click)="saveMidia()">Atualizar</button>
+            <a class="btn btn-danger" [routerLink]="['/home']">Cancelar</a>
         </div>
     </form>
 </div>

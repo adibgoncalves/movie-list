@@ -7,8 +7,8 @@
             <h2 class="m-0">{{midia.nome}}</h2>
         </div>
         <div class="midia-options">
-            <button type="submit" class="btn btn-warning">Editar</button>
-            <button type="submit" class="btn btn-danger">Excluir</button>
+            <a type="submit" class="btn btn-warning" [routerLink]="['/midia-edit', midia.id]" >Editar</a>
+            <button type="submit" class="btn btn-danger" (click)="deleteMidia(midia.id)" >Excluir</button>
         </div>
     </div>
     <form class="row">
@@ -45,7 +45,7 @@
 
             <div class="form-group mb-4">
                 <label class="mb-1">Assistido</label>
-                <input type="text" class="form-control" value={{assistido}} disabled>
+                <input type="text" class="form-control" value={{midia.assistido}} disabled>
             </div>
         </div>
         

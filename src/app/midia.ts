@@ -7,17 +7,5 @@ export interface Midia {
     genero: string;
     duracao: number;
     poster: string;
-    assistido: number;
+    assistido: string;
 }
-
-export class MidiaClass {
-    "id": number;
-    "nome": string;
-    "anotacao": string;
-    "ano": string;
-    "tipo": string;
-    "genero": string;
-    "duracao": number;
-    "poster": string;
-    "assistido": number;
-  }

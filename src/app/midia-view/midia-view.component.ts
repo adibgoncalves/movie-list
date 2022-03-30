@@ -3,7 +3,7 @@ import {map} from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Midia } from '../midia';
 import { MidiaService } from '../midia.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -23,12 +23,25 @@ export class MidiaViewComponent implements OnInit {
     genero: "",
     duracao: 0,
     poster: "",
-    assistido: 0
+    assistido: ""
   }
 
   assistido: string = "";
 
-  constructor(private servico: MidiaService, private route: ActivatedRoute) { }
+  constructor(private servico: MidiaService, private route: ActivatedRoute, private router: Router) { }
+
+  deleteMidia(id: number) {
+    let confirm: any = window.confirm('Deseja excluir a mídia?');
+    if(confirm === true) {
+      this.servico.deleteMidiaById(id).subscribe({
+        next: (midia: Midia) => {
+          this.router.navigate(['/midia-list'])
+        },
+        error: (erro) => console.log(erro),
+        complete: () => console.log('Mídia deletada')
+      })
+    }
+  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
@@ -36,13 +49,6 @@ export class MidiaViewComponent implements OnInit {
       next: (midia: Midia) => this.midia = midia,
       error: (erro) => console.log(erro),
       complete: () => console.log('Requisição finalizada')
-    })
-
-    if(this.midia.assistido === 1){
-      this.assistido = "Sim"
-    }else {
-      this.assistido = "Não"
-    }
-    
+    })    
   }
 }
